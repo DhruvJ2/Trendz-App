@@ -14,7 +14,7 @@ class Slide {
 
 final slideList = [
   Slide(
-    imageUrl: '',
+    imageUrl: 'assets/images/intro1.png',
     title: 'A Cool Way to Get Start',
     description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus tincidunt bibendum.',

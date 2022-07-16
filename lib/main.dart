@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trendz_app/models/theme.dart';
 
 import 'widgets/slider.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: defaultTheme,
       routes: {
         '/': (context) => Slidder(),
         // '/main': (context) => Home(),

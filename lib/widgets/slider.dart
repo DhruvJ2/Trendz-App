@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:trendz_app/models/slide.dart';
+import 'package:trendz_app/models/theme.dart';
 
 class Slidder extends StatefulWidget {
   const Slidder({Key? key}) : super(key: key);
@@ -50,8 +51,8 @@ class _SlidderState extends State<Slidder> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromRGBO(77, 25, 77, 1),
-              Color.fromRGBO(0, 100, 102, 1),
+              Colors.white,
+              Color.fromRGBO(234, 218, 195, 1),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -107,7 +108,7 @@ class _SlidderState extends State<Slidder> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  backgroundColor: const Color.fromRGBO(27, 58, 75, 25),
+                  backgroundColor: const Color.fromRGBO(17, 153, 145, 1),
                 ),
                 const SizedBox(
                   height: 15,
@@ -134,7 +135,7 @@ class SlideItem extends StatelessWidget {
       children: <Widget>[
         Container(
           width: _size.width,
-          height: 225,
+          height: 240,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
@@ -148,10 +149,7 @@ class SlideItem extends StatelessWidget {
         ),
         Text(
           slideList[index].title,
-          style: const TextStyle(
-            fontSize: 22,
-            color: Colors.white,
-          ),
+          style: defaultTheme.textTheme.titleMedium,
         ),
         const SizedBox(
           height: 10,
@@ -160,12 +158,7 @@ class SlideItem extends StatelessWidget {
           padding: const EdgeInsets.all(25.0),
           child: Text(
             slideList[index].description,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.white,
-              letterSpacing: 2.0,
-              fontWeight: FontWeight.w300,
-            ),
+            style: defaultTheme.textTheme.bodyMedium,
             textAlign: TextAlign.justify,
           ),
         ),
