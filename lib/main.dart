@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: defaultTheme,
       routes: {
         '/': (context) => Slidder(),
-        // '/main': (context) => Home(),
+        // '/main': (  context) => Home(),
       },
     );
   }
