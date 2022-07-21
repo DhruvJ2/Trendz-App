@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:trendz_app/models/theme.dart';
-
-import 'widgets/slider.dart';
+import 'package:trendz_app/pages/home.dart';
+import 'package:trendz_app/pages/login.dart';
+import 'package:trendz_app/pages/signup.dart';
+import 'package:trendz_app/pages/welcome.dart';
+import 'package:trendz_app/pages/slider.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +21,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: defaultTheme,
       routes: {
-        '/': (context) => Slidder(),
-        // '/main': (context) => Home(),
+        '/': (context) => const Home(),
+        '/Login': (context) => Login(),
+        '/Signup': (context) => SignupPage(),
+        '/Welcome': (context) => WelcomeScreen(),
+        // '/Home': (context) => const Home(),
+        // '/Toolbar': (context) => CollapsingToolbar(),
+        // '/favourite':(context) => Favourite(),
       },
     );
   }
