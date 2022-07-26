@@ -1,4 +1,4 @@
-#Sat Jul 23 12:09:11 IST 2022
+#Tue Jul 26 17:52:59 IST 2022
 base.0=C\:\\TREND\\Trendz-App\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

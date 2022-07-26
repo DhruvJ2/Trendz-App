@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:trendz_app/models/theme.dart';
+import 'package:trendz_app/pages/favourite.dart';
 import 'package:trendz_app/pages/home.dart';
 import 'package:trendz_app/pages/login.dart';
 import 'package:trendz_app/pages/profile.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: defaultTheme,
       routes: {
-        '/': (context) =>  Profile(),
+        '/': (context) =>  Favourite(),
         '/Login': (context) => Login(),
         '/Signup': (context) => SignupPage(),
         '/Welcome': (context) => WelcomeScreen(),
