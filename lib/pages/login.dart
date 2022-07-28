@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:trendz_app/services/auth.dart';
 
 import '../models/theme.dart';
 
 class Login extends StatefulWidget {
-  final _formkey = GlobalKey<FormState>();
-
   Login({Key? key}) : super(key: key);
 
   @override
@@ -12,6 +11,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final AuthServices _auth = AuthServices();
+  final _formKey = GlobalKey<FormState>();
+
+  String error = '';
   final TextEditingController password = TextEditingController();
   final TextEditingController email = TextEditingController();
 
@@ -19,7 +22,6 @@ class _LoginState extends State<Login> {
   void dispose() {
     password.dispose();
     email.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -45,35 +47,9 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget SignInWithText() {
-    return Column(
-      children: const <Widget>[
-        Text(
-          '- OR -',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
-            fontSize: 13.5,
-            fontFamily: 'sourceSansPro',
-          ),
-        ),
-        SizedBox(height: 22.0),
-        Text(
-          'Continue with',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w400,
-            fontFamily: 'sourceSansPro',
-            fontSize: 18,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget SocialBtn(Function onTap, AssetImage image) {
+  Widget SocialBtn(Function() _onTap, AssetImage image) {
     return GestureDetector(
-      onTap: () {},
+      onTap: _onTap,
       child: Container(
         height: 60.0,
         width: 80.0,
@@ -91,32 +67,6 @@ class _LoginState extends State<Login> {
             image: image,
           ),
         ),
-      ),
-    );
-  }
-
-  Widget SocialBtnRow() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 28.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SocialBtn(
-            () => print('Login with twitter'),
-            const AssetImage(
-              'assets/images/twitter.png',
-            ),
-          ),
-          SizedBox(
-            width: 30,
-          ),
-          SocialBtn(
-            () => print('Login with Google'),
-            const AssetImage(
-              'assets/images/google.png',
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -153,14 +103,13 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final _formkey = GlobalKey<FormState>();
     var _size = MediaQuery.of(context).size;
     bool press = true;
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: _formkey,
+          key: _formKey,
           child: Stack(
             children: <Widget>[
               Container(
@@ -211,12 +160,8 @@ class _LoginState extends State<Login> {
                             color: Colors.black,
                           ),
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Email Id cannot be empty";
-                          }
-                          return null;
-                        },
+                        validator: (value) =>
+                            value!.isEmpty ? "Email Id cannot be empty" : null,
                         onChanged: (value) {},
                       ),
                       SizedBox(
@@ -281,12 +226,17 @@ class _LoginState extends State<Login> {
                                 const Color.fromRGBO(255, 87, 34, 1.0),
                             elevation: 3.0,
                             hoverColor: Color.fromRGBO(221, 44, 0, 1),
-                            onPressed: () {
-                              if (_formkey.currentState!.validate()) {
-                                Navigator.of(context)
-                                    .pushReplacementNamed('/Home');
-                              } else {
-                                print("Not validate");
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                dynamic result =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email.text, password.text);
+                                if (result == null)
+                                  error = "Invalid Credentials";
+                                else {
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/Home');
+                                }
                               }
                             },
                             shape: RoundedRectangleBorder(
@@ -305,8 +255,6 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                       ),
-                      SignInWithText(),
-                      SocialBtnRow(),
                       SizedBox(height: _size.height * 0.010),
                       SignupBtn(),
                     ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trendz_app/models/theme.dart';
+import 'package:trendz_app/services/auth.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   final _formkey = GlobalKey<FormState>();
+  AuthServices _auth = AuthServices();
+  String error = '';
 
   late final TextEditingController password = TextEditingController();
   late final TextEditingController email = TextEditingController();
@@ -84,12 +87,9 @@ class _SignupPageState extends State<SignupPage> {
                                   color: Colors.black,
                                 ),
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Email Id cannot be empty";
-                                }
-                                return null;
-                              },
+                              validator: (value) => value!.isEmpty
+                                  ? "Email Id cannot be empty"
+                                  : null,
                               onChanged: (value) {},
                             ),
                             SizedBox(height: size.height * 0.025),
@@ -130,7 +130,6 @@ class _SignupPageState extends State<SignupPage> {
                                 } else if (value.length < 6) {
                                   return "Enter at least 6 character";
                                 }
-
                                 return null;
                               },
                               onChanged: (value) {},
@@ -162,14 +161,9 @@ class _SignupPageState extends State<SignupPage> {
                                   color: Colors.black,
                                 ),
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Username cannot be empty";
-                                } else if (value.length > 14) {
-                                  return "Enter at most 14 characters";
-                                }
-                                return null;
-                              },
+                              validator: (value) => value!.isEmpty
+                                  ? "Username cannot be empty"
+                                  : null,
                               onChanged: (value) {},
                             ),
                             SizedBox(height: size.height * 0.025),
@@ -184,11 +178,18 @@ class _SignupPageState extends State<SignupPage> {
                                       const Color.fromRGBO(255, 87, 34, 1.0),
                                   elevation: 3.0,
                                   hoverColor: Color.fromRGBO(221, 44, 0, 1),
-                                  onPressed: () {
+                                  onPressed: () async {
                                     if (_formkey.currentState!.validate()) {
-                                      print("Validated");
-                                    } else {
-                                      print("Not validate");
+                                      dynamic result = await _auth
+                                          .registerWithEmailAndPassword(
+                                              email.text,
+                                              password.text,
+                                              username.text);
+                                      if (result == null) {
+                                        error = "Not validate";
+                                      }
+                                      Navigator.of(context)
+                                          .pushReplacementNamed('/Drawer');
                                     }
                                   },
                                   shape: RoundedRectangleBorder(

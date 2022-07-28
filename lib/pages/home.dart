@@ -1,16 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
+import 'package:trendz_app/services/auth.dart';
 import '../widgets/listviewbuilders.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  final AuthServices _auth = AuthServices();
+  Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var _size = MediaQuery.of(context).size;
     var _theme = Theme.of(context);
+    final _user = FirebaseAuth.instance.currentUser!;
+    //_user.displayName
+    //_user.email
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      // appBar: AppBar(
+      //   elevation: 0.0,
+      //   backgroundColor: Colors.transparent,
+      //   title: Text(
+      //     'HOME',
+      //     style: TextStyle(color: Colors.white),
+      //   ),
+      // ),
+      // drawer: HiddenDrawer(),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(left: 10.0, right: 10.0),
         height: _size.height * 0.09,
@@ -60,7 +75,7 @@ class Home extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: _size.height * 0.22,
+                height: _size.height * 0.13,
                 width: _size.width,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.vertical(
@@ -71,34 +86,6 @@ class Home extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.menu_rounded),
-                          iconSize: 26,
-                          color: _theme.backgroundColor,
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Flipkart',
-                            style: _theme.textTheme.headlineMedium,
-                          ),
-                        ),
-                        Container(
-                          height: _size.height * 0.05,
-                          width: _size.height * 0.05,
-                          decoration: BoxDecoration(
-                            color: _theme.backgroundColor,
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20.0,
-                        ),
-                      ],
-                    ),
                     Container(
                       height: _size.height * 0.06,
                       width: _size.width * 0.85,
