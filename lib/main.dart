@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: defaultTheme,
       routes: {
-        '/': (context) =>  Favourite(),
+        '/': (context) =>  Login(),
         '/Login': (context) => Login(),
         '/Signup': (context) => SignupPage(),
         '/Welcome': (context) => WelcomeScreen(),
