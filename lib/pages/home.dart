@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   List<String> text = ['Laptop', 'Camera', 'Tripod', 'Mobile'];
   List<String> image = [
     'assets/images/instta.jpg',
-    'assets/images/face.png',
+    'assets/images/face.jpg',
     'assets/images/pin.png',
     'assets/images/twitter.png'
   ];
