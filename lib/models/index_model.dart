@@ -4,7 +4,7 @@ part 'index_model.g.dart';
 
 @JsonSerializable()
 class IndexModel {
-  late String index;
+  late List<dynamic> index;
 
   IndexModel({required this.index});
 

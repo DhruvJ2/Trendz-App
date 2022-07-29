@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
+import 'package:trendz_app/pages/favourite.dart';
 import 'package:trendz_app/pages/home.dart';
+import 'package:trendz_app/pages/profile.dart';
 import 'package:trendz_app/services/auth.dart';
-
-import '../pages/settings.dart';
 
 class HiddenDrawer extends StatefulWidget {
   const HiddenDrawer({Key? key}) : super(key: key);
@@ -45,29 +45,29 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
           selectedStyle: myTextStyle,
           colorLineSelected: Color.fromRGBO(255, 87, 34, 1),
         ),
-        Home(),
+        Favourite(),
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
-          name: 'Settings',
+          name: 'Profile',
           baseStyle: myTextStyle,
           selectedStyle: myTextStyle,
           colorLineSelected: Color.fromRGBO(255, 87, 34, 1),
         ),
-        Settings(),
+        Profile(),
       ),
-      ScreenHiddenDrawer(
-        ItemHiddenMenu(
-          name: 'Logout',
-          baseStyle: myTextStyle,
-          selectedStyle: myTextStyle,
-          colorLineSelected: Color.fromRGBO(255, 87, 34, 1),
-        ),
-        InkWell(onTap: () async {
-          await _auth.signOut();
-          Navigator.of(context).pushReplacementNamed('/Welcome');
-        }),
-      ),
+      // ScreenHiddenDrawer(
+      //   ItemHiddenMenu(
+      //     name: 'Logout',
+      //     baseStyle: myTextStyle,
+      //     selectedStyle: myTextStyle,
+      //     colorLineSelected: Color.fromRGBO(255, 87, 34, 1),
+      //   ),
+      //   InkWell(onTap: () async {
+      //     await _auth.signOut();
+      //     Navigator.of(context).pushReplacementNamed('/Welcome');
+      //   }),
+      // ),
     ];
   }
 
@@ -77,18 +77,19 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
     final _size = MediaQuery.of(context).size;
     return HiddenDrawerMenu(
       actionsAppBar: [
-        Padding(
-          padding: const EdgeInsets.only(right: 15.0),
-          child: CircleAvatar(
-            radius: _size.width * 0.06,
-            backgroundImage: _user.photoURL == null
-                ? const NetworkImage('')
-                : NetworkImage(_user.photoURL!),
+        IconButton(
+          onPressed: () async {
+            await _auth.signOut();
+            Navigator.of(context).pushReplacementNamed('/Welcome');
+          },
+          icon: Icon(
+            Icons.logout_rounded,
+            size: 25.0,
           ),
-        ),
+        )
       ],
       // curveAnimation: Curves.easeInOut,
-      // elevationAppBar: 0.0,
+      elevationAppBar: 0.0,
       backgroundColorAppBar: const Color.fromRGBO(255, 87, 34, 1),
       screens: _pages,
       backgroundColorMenu: _theme.backgroundColor,

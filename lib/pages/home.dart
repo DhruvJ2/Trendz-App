@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:trendz_app/services/auth.dart';
 import '../models/theme.dart';
 import '../widgets/listviewbuilders.dart';
@@ -23,8 +22,6 @@ class Home extends StatelessWidget {
     var _size = MediaQuery.of(context).size;
     var _theme = Theme.of(context);
     final _user = FirebaseAuth.instance.currentUser!;
-    //_user.displayName
-    //_user.email
     return Scaffold(
       extendBodyBehindAppBar: true,
       // appBar: AppBar(
@@ -36,52 +33,51 @@ class Home extends StatelessWidget {
       //   ),
       // ),
       // drawer: HiddenDrawer(),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-        height: _size.height * 0.09,
-        width: _size.width,
-        child: GNav(
-          rippleColor: _theme.secondaryHeaderColor,
-          hoverColor: _theme.secondaryHeaderColor,
-          haptic: true,
-          tabBorderRadius: 15,
-          tabActiveBorder: Border.all(color: _theme.primaryColor, width: 1),
-          tabBorder: Border.all(color: _theme.primaryColor, width: 1),
-          tabShadow: [BoxShadow(color: _theme.backgroundColor, blurRadius: 8)],
-          curve: Curves.easeIn,
-          duration: const Duration(milliseconds: 700),
-          gap: 8,
-          color: _theme.primaryColor,
-          activeColor: _theme.primaryColor,
-          iconSize: 24,
-          tabBackgroundColor: _theme.backgroundColor.withOpacity(0.1),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          tabs: const [
-            GButton(
-              icon: Icons.home,
-              text: 'Home',
-            ),
-            GButton(
-              icon: Icons.favorite,
-              text: 'Likes',
-            ),
-            GButton(
-              icon: Icons.explore,
-              text: 'Explore',
-            ),
-            GButton(
-              icon: Icons.people,
-              text: 'Profile',
-            )
-          ],
-        ),
-      ),
+      // bottomNavigationBar: Container(
+      //   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      //   height: _size.height * 0.09,
+      //   width: _size.width,
+      //   child: GNav(
+      //     rippleColor: _theme.secondaryHeaderColor,
+      //     hoverColor: _theme.secondaryHeaderColor,
+      //     haptic: true,
+      //     tabBorderRadius: 15,
+      //     tabActiveBorder: Border.all(color: _theme.primaryColor, width: 1),
+      //     tabBorder: Border.all(color: _theme.primaryColor, width: 1),
+      //     tabShadow: [BoxShadow(color: _theme.backgroundColor, blurRadius: 8)],
+      //     curve: Curves.easeIn,
+      //     duration: const Duration(milliseconds: 700),
+      //     gap: 8,
+      //     color: _theme.primaryColor,
+      //     activeColor: _theme.primaryColor,
+      //     iconSize: 24,
+      //     tabBackgroundColor: _theme.backgroundColor.withOpacity(0.1),
+      //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      //     tabs: const [
+      //       GButton(
+      //         icon: Icons.home,
+      //         text: 'Home',
+      //       ),
+      //       GButton(
+      //         icon: Icons.favorite,
+      //         text: 'Likes',
+      //       ),
+      //       GButton(
+      //         icon: Icons.explore,
+      //         text: 'Explore',
+      //       ),
+      //       GButton(
+      //         icon: Icons.people,
+      //         text: 'Profile',
+      //       )
+      //     ],
+      //   ),
+      // ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Container(
-          height: _size.height * 1.4,
+          height: _size.height * 1.2,
           width: _size.width,
-          // color: _theme.backgroundColor,
           child: Column(
             children: [
               Container(
@@ -89,7 +85,7 @@ class Home extends StatelessWidget {
                 width: _size.width,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.vertical(
-                    bottom: Radius.circular(25.0),
+
                   ),
                   color: _theme.primaryColor,
                 ),
@@ -175,7 +171,7 @@ class Home extends StatelessWidget {
                       );
                     }),
               ),
-              const ImageListviewBuilder(),
+              ImageListviewBuilder(),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 20.0,
@@ -205,14 +201,17 @@ class Home extends StatelessWidget {
                         child: SizedBox(
                           width: _size.width * 0.2,
                           child: Container(
+
                             decoration: BoxDecoration(
+
                               borderRadius: BorderRadius.circular(25.0),
                               boxShadow: [
                                 BoxShadow(
                                     color: Color.fromRGBO(255, 87, 34, 1)
                                         .withOpacity(0.2),
-                                    spreadRadius: 3.0,
-                                    blurRadius: 4.0)
+                                    spreadRadius: 1.0,
+                                    offset: Offset(5,5),
+                                    blurRadius: 1.0)
                               ],
                             ),
                             child: Card(
@@ -225,6 +224,7 @@ class Home extends StatelessWidget {
                                 child: Image(
                                   fit: BoxFit.fill,
                                   image: AssetImage(image[index]),
+
                                 ),
                               ),
                             ),
@@ -250,7 +250,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               Container(
-                height: _size.height * 0.36,
+                height: _size.height * 0.2,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   addAutomaticKeepAlives: true,
@@ -261,7 +261,7 @@ class Home extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                         child: Container(
-                          width: _size.width * 0.30,
+                          width: _size.width * 0.20,
                           child: Column(
                             children: [
                               Card(
@@ -278,10 +278,10 @@ class Home extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: _size.height * 0.010,
+                                height: _size.height * 0.005,
                               ),
                               Text(category[index],
-                                  style: defaultTheme.textTheme.bodySmall),
+                                  style: TextStyle(fontSize: 12,fontWeight: FontWeight.w700,color: Colors.black)),
                             ],
                           ),
                         ),

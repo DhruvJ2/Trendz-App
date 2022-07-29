@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:trendz_app/pages/home.dart';
 import 'package:trendz_app/providers/google_sign_in.dart';
-import '../providers/google_sign_in.dart';
 
 
 class WelcomeScreen extends StatelessWidget {
@@ -230,9 +228,9 @@ Widget SignInWithText() {
   );
 }
 
-Widget SocialBtn(void Function() onTap, AssetImage image) {
+Widget SocialBtn(void Function() _onTap, AssetImage image) {
   return GestureDetector(
-    onTap: onTap,
+    onTap: _onTap,
     child: Container(
       height: 60.0,
       width: 80.0,
