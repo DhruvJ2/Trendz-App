@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trendz_app/models/theme.dart';
+import 'package:trendz_app/services/auth.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -7,6 +9,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final _user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -20,25 +23,24 @@ class _ProfileState extends State<Profile> {
           child: Column(
             children: <Widget>[
               Stack(
-                clipBehavior: Clip.none,
                 children: <Widget>[
                   Container(
                     child: Image.asset('assets/images/intro1.png'),
                     width: size.width,
-                    height: size.height * 0.41,
-                    margin: EdgeInsets.only(bottom: size.height * 0.42 / 4),
+                    height: size.height * 0.35,
+                    margin: EdgeInsets.only(bottom: size.height * 0.15),
                   ),
                   Positioned(
-                    top: size.height * 0.41 - size.height * 0.11 * 2 / 2,
-                    left: 132.85,
+                    top: size.height * 0.35 - size.height * 0.11,
+                    left: size.width * 0.28,
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: size.height * 0.11,
                     ),
                   ),
                   Positioned(
-                    top: size.height * 0.41 - size.height * 0.1 * 2 / 2,
-                    left: 140,
+                    top: size.height * 0.35 - size.height * 0.1,
+                    left: size.width * 0.30,
                     child: CircleAvatar(
                       backgroundColor: Color.fromRGBO(255, 87, 34, 1),
                       radius: size.height * 0.1,
@@ -49,7 +51,7 @@ class _ProfileState extends State<Profile> {
               ),
               Center(
                   child: Text(
-                'Username',
+                _user.displayName!,
                 style: defaultTheme.textTheme.titleMedium,
               )),
               SizedBox(
@@ -57,7 +59,7 @@ class _ProfileState extends State<Profile> {
               ),
               Center(
                   child: Text(
-                'email@gmail.com',
+                _user.email!,
                 style: defaultTheme.textTheme.titleMedium,
               )),
               SizedBox(
@@ -86,7 +88,12 @@ class _ProfileState extends State<Profile> {
                         SizedBox(
                           width: 0,
                         ),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.edit,color: Colors.black,)),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.edit,
+                              color: Colors.black,
+                            )),
                       ],
                     ),
                     SizedBox(

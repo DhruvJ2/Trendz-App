@@ -23,13 +23,13 @@ class FlipkartModel {
   late IndexModel img;
   late IndexModel name;
   late IndexModel price;
-  late IndexModel rating;
+  // late IndexModel rating;
 
   FlipkartModel({
     required this.img,
     required this.name,
     required this.price,
-    required this.rating,
+    // required this.rating,
   });
 
   factory FlipkartModel.fromJson(Map<String, dynamic> json) =>
