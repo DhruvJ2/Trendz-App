@@ -3,19 +3,17 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:trendz_app/models/theme.dart';
 
 class CollapsingToolbar extends StatefulWidget {
-
-
   @override
   State<CollapsingToolbar> createState() => _CollapsingToolbarState();
 }
 
 class _CollapsingToolbarState extends State<CollapsingToolbar> {
-  double ratting=0;
+  double ratting = 0;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    double rating=0;
+    double rating = 0;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -74,29 +72,38 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
                           height: size.height * 0.018,
                         ),
                         Row(
-                          children: <Widget>[RatingBar.builder(
-                            updateOnDrag: true,
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color: Colors.amber,
+                          children: <Widget>[
+                            RatingBar.builder(
+                              updateOnDrag: true,
+                              minRating: 1,
+                              direction: Axis.horizontal,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              itemPadding:
+                                  EdgeInsets.symmetric(horizontal: 0.0),
+                              itemBuilder: (context, _) => Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                              itemSize: 35,
+                              onRatingUpdate: (rating) {
+                                setState(() {
+                                  this.ratting = rating;
+                                });
+                              },
                             ),
-                            itemSize: 35,
-                            onRatingUpdate: (rating) {setState(() {
-                              this.ratting=rating;
-                            });
-                            },
-                          ),
-                         SizedBox(width: 20,),
-                         Text('Rating: $ratting',style: TextStyle(
-                           fontSize: 22,
-                           fontFamily: 'sourceSansPro',
-                         ),),
-                          ],                        ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              'Rating: $ratting',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontFamily: 'sourceSansPro',
+                              ),
+                            ),
+                          ],
+                        ),
 
                         SizedBox(
                           height: size.height * 0.030,
@@ -151,8 +158,8 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
                                     color: Color.fromRGBO(255, 87, 34, 1),
                                     width: 2),
                               ),
-                              backgroundColor: Colors.white,
-                              foregroundColor: Color.fromRGBO(255, 87, 34, 1),
+                              // backgroundColor: Colors.white,
+                              // foregroundColor: Color.fromRGBO(255, 87, 34, 1),
                               shadowColor: Color.fromRGBO(255, 87, 34, 1),
                             ),
                             onPressed: () {},
@@ -166,8 +173,7 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
                     ),
                     Container(
                       child: FloatingActionButton(
-
-                       splashColor: Color.fromRGBO(255, 87, 34, 1),
+                        splashColor: Color.fromRGBO(255, 87, 34, 1),
                         onPressed: () {},
                         backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -199,8 +205,8 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
                                     color: Color.fromRGBO(255, 87, 34, 1),
                                     width: 2),
                               ),
-                              backgroundColor: Colors.white,
-                              foregroundColor: Color.fromRGBO(255, 87, 34, 1),
+                              // backgroundColor: Colors.white,
+                              // foregroundColor: Color.fromRGBO(255, 87, 34, 1),
                               shadowColor: Color.fromRGBO(255, 87, 34, 1),
                             ),
                             onPressed: () {},
@@ -210,7 +216,9 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
                                   'Next',
                                   style: defaultTheme.textTheme.bodyMedium,
                                 ),
-                                SizedBox(width: 8,),
+                                SizedBox(
+                                  width: 8,
+                                ),
                                 Icon(Icons.arrow_forward_sharp),
                               ],
                             ))),
