@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trendz_app/pages/searchresult.dart';
 import 'package:trendz_app/services/auth.dart';
+import '../models/theme.dart';
 import '../widgets/listviewbuilders.dart';
 
 class Home extends StatelessWidget {
@@ -9,6 +10,14 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
   final TextEditingController _search = TextEditingController();
+  List<String> text = ['Laptop', 'Camera', 'Tripod', 'Mobile'];
+  List<String> image = [
+    'assets/images/instta.jpg',
+    'assets/images/face.jpg',
+    'assets/images/pin.png',
+    'assets/images/twitter.png'
+  ];
+  List<String> category = ['Fashion', 'Electronics', 'Furniture', 'Appliances'];
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +38,7 @@ class Home extends StatelessWidget {
                 height: _size.height * 0.13,
                 width: _size.width,
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(
-                    bottom: Radius.circular(25.0),
-                  ),
+                  borderRadius: const BorderRadius.vertical(),
                   color: _theme.primaryColor,
                 ),
                 child: Column(
@@ -116,7 +123,7 @@ class Home extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              'Places',
+                              text[value],
                               style: _theme.textTheme.bodySmall,
                             ),
                           ),
@@ -150,19 +157,32 @@ class Home extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: SizedBox(
                           width: _size.width * 0.2,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            elevation: 0,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: Image(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixlok.com%2Fwp-content%2Fuploads%2F2021%2F04%2FFlipkart-Logo-PNG-1024x1024.jpg&f=1&nofb=1'),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(255, 87, 34, 1)
+                                        .withOpacity(0.2),
+                                    spreadRadius: 1.0,
+                                    offset: Offset(5, 5),
+                                    blurRadius: 1.0)
+                              ],
+                            ),
+                            child: Card(
+                              shadowColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(9.0)),
+                              elevation: 0,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image(
+                                  fit: BoxFit.fill,
+                                  image: AssetImage(image[index]),
+                                ),
                               ),
                             ),
                           ),
@@ -187,8 +207,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               Container(
-                height: _size.height * 0.15,
-                padding: EdgeInsets.all(8.0),
+                height: _size.height * 0.2,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   addAutomaticKeepAlives: true,
@@ -197,21 +216,33 @@ class Home extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          width: _size.width * 0.2,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            elevation: 0,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: Image(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixlok.com%2Fwp-content%2Fuploads%2F2021%2F04%2FFlipkart-Logo-PNG-1024x1024.jpg&f=1&nofb=1'),
+                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        child: Container(
+                          width: _size.width * 0.20,
+                          child: Column(
+                            children: [
+                              Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                elevation: 0,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  child: Image(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixlok.com%2Fwp-content%2Fuploads%2F2021%2F04%2FFlipkart-Logo-PNG-1024x1024.jpg&f=1&nofb=1'),
+                                  ),
+                                ),
                               ),
-                            ),
+                              SizedBox(
+                                height: _size.height * 0.005,
+                              ),
+                              Text(category[index],
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black)),
+                            ],
                           ),
                         ),
                       ),

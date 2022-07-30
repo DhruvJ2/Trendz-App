@@ -15,7 +15,6 @@ import 'package:trendz_app/pages/wrapper.dart';
 import 'package:trendz_app/providers/google_sign_in.dart';
 import 'package:trendz_app/services/auth.dart';
 import 'package:trendz_app/widgets/HiddenDrawer.dart';
-
 import 'firebase_options.dart';
 
 void main() async {
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider.value(
-          value: AuthServices().user,
+          value: AuthServices().user  ,
           initialData: null,
         ),
         ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
