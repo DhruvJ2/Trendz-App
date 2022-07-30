@@ -232,26 +232,3 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
     );
   }
 }
-
-// expandedHeight: size.height * 0.310,
-// flexibleSpace: FlexibleSpaceBar(
-// centerTitle: true,
-// title: Text(
-// 'Description',
-// style: TextStyle(
-// color: Colors.black,
-// fontSize: 19,
-// fontWeight: FontWeight.w600,
-// letterSpacing: 2.0,
-// ),
-// ),
-// collapseMode: CollapseMode.pin,
-// background: Image.asset(
-// 'assets/images/feature.jpg',
-// fit: BoxFit.fill,
-// ),
-// ),
-// pinned: true,
-// floating: true,
-// snap: true,
-// backgroundColor: Color.fromRGBO(255, 87, 34, 1.0),

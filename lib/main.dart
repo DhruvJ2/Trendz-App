@@ -6,6 +6,7 @@ import 'package:trendz_app/pages/favourite.dart';
 import 'package:trendz_app/pages/home.dart';
 import 'package:trendz_app/pages/login.dart';
 import 'package:trendz_app/pages/profile.dart';
+import 'package:trendz_app/pages/searchresult.dart';
 import 'package:trendz_app/pages/signup.dart';
 import 'package:trendz_app/pages/welcome.dart';
 import 'package:trendz_app/pages/slider.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
           '/Home': (context) => Home(),
           '/Drawer': (context) => const HiddenDrawer(),
           // '/Toolbar': (context) => CollapsingToolbar(),
-          // '/favourite':(context) => Favourite(),
+          // '/SearchResult': (context) => SearchResult(),
         },
       ),
     );

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:trendz_app/models/data.dart';
 
-Future<FlipkartModel> getFlipkartData() async {
-  var url = Uri.parse('http://10.0.2.2:8000/get-data?searchTitle=laptop');
+Future<FlipkartModel> getFlipkartData(String searchTitle) async {
+  var url = Uri.parse('http://10.0.2.2:8000/get-data?searchTitle=$searchTitle');
   Response response = await get(url);
 
   if (response.statusCode == 200) {

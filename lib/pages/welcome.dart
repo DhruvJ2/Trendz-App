@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:trendz_app/pages/home.dart';
 import 'package:trendz_app/providers/google_sign_in.dart';
 
-
 class WelcomeScreen extends StatelessWidget {
   Widget SocialBtnRow(BuildContext context) {
     return Padding(
@@ -251,29 +250,3 @@ Widget SocialBtn(void Function() _onTap, AssetImage image) {
     ),
   );
 }
-
-// Widget SocialBtnRow() {
-//   return Padding(
-//     padding: const EdgeInsets.symmetric(vertical: 25.0),
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: <Widget>[
-//         SocialBtn(
-//           () => print('Login with twitter'),
-//           const AssetImage(
-//             'assets/images/twitter.png',
-//           ),
-//         ),
-//         const SizedBox(
-//           width: 27,
-//         ),
-//         SocialBtn(
-//           () => print('Login with Google'),
-//           const AssetImage(
-//             'assets/images/google.png',
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }

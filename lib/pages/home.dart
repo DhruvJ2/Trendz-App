@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:trendz_app/pages/searchresult.dart';
 import 'package:trendz_app/services/auth.dart';
 import '../widgets/listviewbuilders.dart';
 
@@ -7,62 +8,16 @@ class Home extends StatelessWidget {
   final AuthServices _auth = AuthServices();
   Home({Key? key}) : super(key: key);
 
+  final TextEditingController _search = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var _size = MediaQuery.of(context).size;
     var _theme = Theme.of(context);
     final _user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
-      // appBar: AppBar(
-      //   elevation: 0.0,
-      //   backgroundColor: Colors.transparent,
-      //   title: Text(
-      //     'HOME',
-      //     style: TextStyle(color: Colors.white),
-      //   ),
-      // ),
-      // drawer: HiddenDrawer(),
-      // bottomNavigationBar: Container(
-      //   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-      //   height: _size.height * 0.09,
-      //   width: _size.width,
-      //   child: GNav(
-      //     rippleColor: _theme.secondaryHeaderColor,
-      //     hoverColor: _theme.secondaryHeaderColor,
-      //     haptic: true,
-      //     tabBorderRadius: 15,
-      //     tabActiveBorder: Border.all(color: _theme.primaryColor, width: 1),
-      //     tabBorder: Border.all(color: _theme.primaryColor, width: 1),
-      //     tabShadow: [BoxShadow(color: _theme.backgroundColor, blurRadius: 8)],
-      //     curve: Curves.easeIn,
-      //     duration: const Duration(milliseconds: 700),
-      //     gap: 8,
-      //     color: _theme.primaryColor,
-      //     activeColor: _theme.primaryColor,
-      //     iconSize: 24,
-      //     tabBackgroundColor: _theme.backgroundColor.withOpacity(0.1),
-      //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      //     tabs: const [
-      //       GButton(
-      //         icon: Icons.home,
-      //         text: 'Home',
-      //       ),
-      //       GButton(
-      //         icon: Icons.favorite,
-      //         text: 'Likes',
-      //       ),
-      //       GButton(
-      //         icon: Icons.explore,
-      //         text: 'Explore',
-      //       ),
-      //       GButton(
-      //         icon: Icons.people,
-      //         text: 'Profile',
-      //       )
-      //     ],
-      //   ),
-      // ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Container(
@@ -94,8 +49,16 @@ class Home extends StatelessWidget {
                           color: _theme.backgroundColor,
                           borderRadius: BorderRadius.circular(20.0)),
                       child: TextFormField(
+                        controller: _search,
                         textAlign: TextAlign.left,
-                        onTap: () => {},
+                        onFieldSubmitted: (search) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => SearchResult(search),
+                            ),
+                          );
+                          _search.clear();
+                        },
                         autocorrect: false,
                         style: TextStyle(
                           color: Colors.black87,
