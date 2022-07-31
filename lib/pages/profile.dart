@@ -44,7 +44,7 @@ class _ProfileState extends State<Profile> {
                     child: CircleAvatar(
                       backgroundColor: Color.fromRGBO(255, 87, 34, 1),
                       radius: size.height * 0.1,
-                      backgroundImage: AssetImage('assets/images/profile.png'),
+                      backgroundImage: AssetImage('assets/images/prof.jpg'),
                     ),
                   ),
                 ],
@@ -100,7 +100,8 @@ class _ProfileState extends State<Profile> {
                       height: size.height * 0.005,
                     ),
                     Text(
-                      'nfasb asdvas asd vvasd vasd asdkjfasdfajsd asd as dj asd asdj ajs dj asjd v asdj vas dv asd vja sdjv asjd va d vas dv ',
+                      'I am a social media influencer and I also love to travel a lot. I also have an interest in mobile and laptops',
+                      style: defaultTheme.textTheme.bodyMedium,
                       textAlign: TextAlign.justify,
                     )
                   ],
