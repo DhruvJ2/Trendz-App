@@ -1,4 +1,4 @@
-#Sat Jul 30 23:12:07 IST 2022
-base.0=C\:\\TREND\\Trendz-App\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Sun Jul 31 15:40:29 IST 2022
+base.0=D\:\\Program_Workspaces\\Flutter\\Trendz-App\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

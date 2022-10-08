@@ -12,10 +12,16 @@ class Home extends StatelessWidget {
   final TextEditingController _search = TextEditingController();
   List<String> text = ['Laptop', 'Camera', 'Tripod', 'Mobile'];
   List<String> image = [
-    'assets/images/instta.jpg',
-    'assets/images/face.jpg',
-    'assets/images/pin.png',
+    'assets/images/instagram.png',
+    'assets/images/facebook.png',
+    'assets/images/pinterest.png',
     'assets/images/twitter.png'
+  ];
+  List<String> categoryImage = [
+    'assets/images/clothes-hanger.png',
+    'assets/images/laptop-screen.png',
+    'assets/images/furnitures.png',
+    'assets/images/electric-appliance.png',
   ];
   List<String> category = ['Fashion', 'Electronics', 'Furniture', 'Appliances'];
 
@@ -147,7 +153,7 @@ class Home extends StatelessWidget {
                 ),
               ),
               Container(
-                height: _size.height * 0.15,
+                height: _size.height * 0.13,
                 padding: EdgeInsets.all(8.0),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -159,7 +165,7 @@ class Home extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: SizedBox(
-                          width: _size.width * 0.2,
+                          width: _size.width * 0.19,
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25.0),
@@ -226,11 +232,12 @@ class Home extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10.0)),
                                 elevation: 0,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(25.0),
+                                  borderRadius: BorderRadius.circular(10.0),
                                   child: Image(
-                                    fit: BoxFit.fill,
-                                    image: NetworkImage(
-                                        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixlok.com%2Fwp-content%2Fuploads%2F2021%2F04%2FFlipkart-Logo-PNG-1024x1024.jpg&f=1&nofb=1'),
+                                    height: 60.0,
+                                    width: 60.0,
+                                    fit: BoxFit.contain,
+                                    image: AssetImage(categoryImage[index]),
                                   ),
                                 ),
                               ),
@@ -239,7 +246,7 @@ class Home extends StatelessWidget {
                               ),
                               Text(category[index],
                                   style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 11.7,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.black)),
                             ],

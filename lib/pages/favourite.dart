@@ -115,7 +115,7 @@ class Favourite extends StatelessWidget {
               Hero(
                   tag: imgPath,
                   child: Container(
-                      height: _size.height * 0.19,
+                      height: _size.height * 0.15,
                       width: 180.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
